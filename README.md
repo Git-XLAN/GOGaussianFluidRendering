@@ -1,6 +1,8 @@
+# GOGaussianFluidRendering
+
 Inference / real-time rendering only. No training code.
 
-Requirements: Win10/11 x64, NVIDIA GPU, Python 3.10, torch 2.3.0+cu121. Other Python versions won't work, the bundled pyd files are cp310.
+Requirements: Win10/11 x64, NVIDIA GPU with a recent [driver](https://www.nvidia.com/Download/index.aspx) (CUDA 12.1 capable), [Miniconda](https://docs.conda.io/en/latest/miniconda.html), Python 3.10, [PyTorch](https://pytorch.org/get-started/previous-versions/#v230) 2.3.0+cu121. Other Python versions won't work, the bundled pyd files are cp310.
 
 ```
 conda create -n falcor-pytorch python=3.10 -y
@@ -16,7 +18,7 @@ conda activate falcor-pytorch
 $env:PYTHONPATH = (Get-Location).Path
 ```
 
-Falcor, the Gaussian rasterizer and cunnsearch are bundled, nothing to build. PYTHONPATH has to point at the repo root or the imports fail.
+Bundled prebuilt, nothing to build: a modified [Falcor](https://github.com/NVIDIAGameWorks/Falcor) runtime (`Falcor/`), Inria's [diff-gaussian-rasterization](https://github.com/graphdeco-inria/diff-gaussian-rasterization) (`diff_gaussian_rasterization/`), and a [cuNSearch](https://github.com/InteractiveComputerGraphics/cuNSearch) based neighbor search (`src_v3/cunnsearch.cp310-win_amd64.pyd`). PYTHONPATH has to point at the repo root or the imports fail.
 
 Neighbor search: with `--search_optimized` it uses `src_v3/cunnsearch.cp310-win_amd64.pyd` (CUDA, only depends on torch). Without it, falls back to scipy cKDTree.
 
@@ -36,15 +38,22 @@ Placeholders used below: `<data>` is the data root folder (e.g. `sample_data`, o
 
 Frame id is the first number in the file name. `sample_data` only has a couple of frames of `WaterFall`, it's just for checking the setup.
 
-Full scenes (Boat, DoubleDamBreak, DownWater, WaterFall; particle data only) are on the [data-v1 release](https://github.com/Git-XLAN/GOGaussianFluidRendering/releases/tag/data-v1). Each scene is split into several independent zips. Download all parts of a scene and extract them into the same `<data>` folder:
+Full scenes (Boat, DoubleDamBreak, DownWater, WaterFall; particle data only) are on the [data-v1 release](https://github.com/Git-XLAN/GOGaussianFluidRendering/releases/tag/data-v1). Each scene is split into several independent zips (not a split archive, every part opens on its own):
+
+| Scene | Frames | Files | Unpacked |
+|---|---|---|---|
+| Boat | 300 | `Boat_particle_part01..06.zip` | 12 GB |
+| DoubleDamBreak | 300 | `DoubleDamBreak_particle_part01..02.zip` | 4.5 GB |
+| DownWater | 300 | `DownWater_particle_part01..02.zip` | 2.6 GB |
+| WaterFall | 400 | `WaterFall_particle_part01..04.zip` | 14 GB |
+
+Download all parts of a scene and extract them into the same `<data>` folder, e.g. for Boat:
 
 ```
-Expand-Archive Boat_particle_part01.zip -DestinationPath <data>
-Expand-Archive Boat_particle_part02.zip -DestinationPath <data>
-...
+Get-ChildItem Boat_particle_part*.zip | ForEach-Object { Expand-Archive $_ -DestinationPath <data> -Force }
 ```
 
-You get `<data>/Boat/particle/*.vtk`, then use `--scene Boat`. Unpacked sizes: Boat 12 GB, DoubleDamBreak 4.5 GB, DownWater 2.6 GB, WaterFall 14 GB.
+You get `<data>/Boat/particle/*.vtk`, then use `--scene Boat`.
 
 `SceneDes/` holds the render setup for these scenes: `SceneDes/<scene>/baseRender.pyscene` (camera, env map) plus the background meshes and textures in `SceneDes/<scene>/mesh/bg/`. It's picked up automatically from the scene name. DoubleDamBreak has no background and uses the default `src_v3/baseRender.pyscene`. The env map shared by all scenes is `SceneDes/envmap/20050806-03_4k.hdr`.
 

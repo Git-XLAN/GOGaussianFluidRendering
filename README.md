@@ -34,6 +34,16 @@ Data layout:
 
 Frame id is the first number in the file name. `sample_data` only has a couple of frames, it's just for checking the setup.
 
+Full scenes (Boat, DoubleDamBreak, DownWater, WaterFall; particle data only) are on the [data-v1 release](https://github.com/Git-XLAN/GOGaussianFluid-Public/releases/tag/data-v1). Each scene is split into several independent zips. Download all parts of a scene and extract them into the same `<data>` folder:
+
+```
+Expand-Archive Boat_particle_part01.zip -DestinationPath <data>
+Expand-Archive Boat_particle_part02.zip -DestinationPath <data>
+...
+```
+
+You get `<data>/Boat/particle/*.vtk`, then use `--scene Boat`. Unpacked sizes: Boat 12 GB, DoubleDamBreak 4.5 GB, DownWater 2.6 GB, WaterFall 14 GB.
+
 Weights: `weights/latest.pth` (same architecture as `direct.pth`). These args must match:
 
 ```

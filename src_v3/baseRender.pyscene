@@ -1,3 +1,7 @@
+import os
+
+here = os.path.dirname(os.path.abspath(__file__))
+
 camera = Camera('Camera0')
 camera.position = float3(0.0, 1.0, 10.0)
 camera.target = float3(0.0, 1.0, 0.0)
@@ -6,7 +10,6 @@ camera.focalLength = 21.0
 sceneBuilder.addCamera(camera)
 sceneBuilder.selectedCamera = camera
 
-
-envMap = EnvMap('F:/DataSet/Init_01/bgScene/20050806-03_hd.hdr')
+envMap = EnvMap(os.path.join(here, '..', 'SceneDes', 'envmap', '20050806-03_4k.hdr'))
 envMap.intensity = 2.0
 sceneBuilder.envMap = envMap

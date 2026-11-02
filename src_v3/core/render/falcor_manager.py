@@ -55,6 +55,7 @@ _DEFAULT_BASE_RENDER_PYSCENE = str(_SRC_V3_DIR / "baseRender.pyscene")
 def resolve_base_render_pyscene(data_path: str, scene: str) -> str:
     """
     优先加载 ``data_path/scene/baseRender.pyscene``（文件存在时）；
+    其次 ``SceneDes/scene/baseRender.pyscene``；
     否则使用仓库默认 ``./src_v3/baseRender.pyscene``。
     ``data_path`` 或 ``scene`` 为空时直接使用默认路径。
     """
@@ -65,8 +66,10 @@ def resolve_base_render_pyscene(data_path: str, scene: str) -> str:
     candidate = Path(dp) / sc / "baseRender.pyscene"
     if candidate.is_file():
         return str(candidate.resolve())
-    else:
-        print(f"baseRender.pyscene not found in {candidate}")
+    packaged = _SRC_V3_DIR.parent / "SceneDes" / sc / "baseRender.pyscene"
+    if packaged.is_file():
+        return str(packaged)
+    print(f"baseRender.pyscene not found in {candidate} or {packaged}")
     return _DEFAULT_BASE_RENDER_PYSCENE
 
 

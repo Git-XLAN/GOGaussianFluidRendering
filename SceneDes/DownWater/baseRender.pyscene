@@ -1,0 +1,25 @@
+import os
+
+here = os.path.dirname(os.path.abspath(__file__))
+
+camera = Camera('Camera0')
+camera.position = float3(0.7336, 6.3549, 0.3063)
+camera.target = float3(0.6357, 5.3597, 0.3071)
+camera.up = float3(0.0, 1.0, 0.0)
+camera.focalLength = 21.0
+sceneBuilder.addCamera(camera)
+sceneBuilder.selectedCamera = camera
+
+envMap = EnvMap(os.path.join(here, '..', 'envmap', '20050806-03_4k.hdr'))
+envMap.intensity = 2.0
+sceneBuilder.envMap = envMap
+
+PoolMesh = TriangleMesh.createFromFile(os.path.join(here, 'mesh/bg/bg.obj'))
+
+PoolMat = StandardMaterial('Pool')
+PoolMat.loadTexture(MaterialTextureSlot.BaseColor, os.path.join(here, 'mesh/bg/Texture/PoolLighting.png'))
+
+PoolMeshID = sceneBuilder.addTriangleMesh(PoolMesh,PoolMat)
+PoolNodeID = sceneBuilder.addNode('Pool', Transform(scaling=1, translation=float3(0.0, 0.0, 0.0)))
+
+sceneBuilder.addMeshInstance(PoolNodeID, PoolMeshID)

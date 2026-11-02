@@ -1,0 +1,34 @@
+import os
+
+here = os.path.dirname(os.path.abspath(__file__))
+
+camera = Camera('Camera0')
+camera.position = float3(0.0, 1.0, 10.0)
+camera.target = float3(0.0, 1.0, 0.0)
+camera.up = float3(0.0, 1.0, 0.0)
+camera.focalLength = 21.0
+sceneBuilder.addCamera(camera)
+sceneBuilder.selectedCamera = camera
+
+envMap = EnvMap(os.path.join(here, '..', 'envmap', '20050806-03_4k.hdr'))
+envMap.intensity = 2.0
+sceneBuilder.envMap = envMap
+
+RockMesh = TriangleMesh.createFromFile(os.path.join(here, 'mesh/bg/rock.obj'))
+
+RockMat = StandardMaterial('Rock')
+RockMat.loadTexture(MaterialTextureSlot.BaseColor, os.path.join(here, 'mesh/bg/Texture/RockLighting.png'))
+
+RockMeshID = sceneBuilder.addTriangleMesh(RockMesh,RockMat)
+RockNodeID = sceneBuilder.addNode('Rock', Transform(scaling=1, translation=float3(0.0, 0.0, 0.0)))
+
+sceneBuilder.addMeshInstance(RockNodeID, RockMeshID)
+
+BgMesh = TriangleMesh.createFromFile(os.path.join(here, 'mesh/bg/backGround.obj'))
+BgMat = StandardMaterial('Bg')
+BgMat.loadTexture(MaterialTextureSlot.BaseColor, os.path.join(here, 'mesh/bg/Texture/BackGroundLighting.png'))
+
+BgMeshID = sceneBuilder.addTriangleMesh(BgMesh,BgMat)
+BgNodeID = sceneBuilder.addNode('BG',Transform(scaling=1,translation=float3(0.0,0.0,0.0)))
+
+sceneBuilder.addMeshInstance(BgNodeID,BgMeshID)

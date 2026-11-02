@@ -1,0 +1,29 @@
+import os
+
+here = os.path.dirname(os.path.abspath(__file__))
+
+camera = Camera('Camera0')
+camera.position = float3(0.2644, 5.9450, 0.4115)
+camera.target = float3(0.2308, 4.9456,0.4117)
+camera.up = float3(0.0, 1.0, 0.0)
+camera.focalLength = 40.0
+sceneBuilder.addCamera(camera)
+sceneBuilder.selectedCamera = camera
+
+envMap = EnvMap(os.path.join(here, '..', 'envmap', '20050806-03_4k.hdr'))
+envMap.intensity = 2.0
+sceneBuilder.envMap = envMap
+
+name_list = ['Top','Down']
+for name in name_list:
+    mesh_path = os.path.join(here, 'mesh/bg/' + name + '.obj')
+    texture_path = os.path.join(here, 'mesh/bg/Texture/' + name + 'Lighting.png')
+    
+    mesh = TriangleMesh.createFromFile(mesh_path)
+    mat = StandardMaterial(name)
+    mat.loadTexture(MaterialTextureSlot.BaseColor, texture_path)
+    
+    mesh_id = sceneBuilder.addTriangleMesh(mesh, mat)
+    node_id = sceneBuilder.addNode(name, Transform(scaling=1, translation=float3(0.0, 0.0, 0.0)))
+
+    sceneBuilder.addMeshInstance(node_id, mesh_id)

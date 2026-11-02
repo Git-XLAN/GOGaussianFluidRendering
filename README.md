@@ -95,4 +95,8 @@ python -m src_v3.testbed_minimal_water
 
 `--search_optimized` needs CUDA tensors. Falcor is D3D12, Windows only. If python and Falcor are on different drives you may get an Agility SDK warning, usually still works.
 
-License: non-commercial research/evaluation only (includes Inria `diff-gaussian-rasterization` and redistributable Falcor/NVIDIA/Microsoft runtime binaries). This software contains source code provided by NVIDIA Corporation. See `LICENSE`, `THIRD_PARTY_NOTICES.md`, and `licenses/`.
+## License
+
+Non-commercial research and evaluation use only, see [LICENSE](LICENSE). This is mainly because the bundled [diff-gaussian-rasterization](https://github.com/graphdeco-inria/diff-gaussian-rasterization) is under Inria's non-commercial license.
+
+Other bundled components (Falcor, Slang, cuNSearch, NVIDIA and Microsoft runtime DLLs, etc.) keep their own licenses. They are listed in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md), with full texts in [licenses/](licenses/).

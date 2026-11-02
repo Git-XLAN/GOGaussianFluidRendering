@@ -1,0 +1,92 @@
+GOGaussianFluid — Research / Non-Commercial License & Third-Party Terms
+=======================================================================
+
+This repository distributes:
+  1. Project code in `src_v3/` (excluding `src_v3/cunnsearch.cp310-win_amd64.pyd`),
+     pretrained weights in `weights/`, and sample frames in `sample_data/`.
+  2. Third-party components in source or binary form (`diff_gaussian_rasterization/`,
+     `Dependency/diff-gaussian-rasterization/`, `src_v3/cunnsearch.cp310-win_amd64.pyd`,
+     and `Falcor/`).
+
+IMPORTANT: Because this package includes and depends on Inria/MPII
+`diff-gaussian-rasterization` (non-commercial research license) as well as
+redistributable binaries governed by NVIDIA and Microsoft SDK licenses, this
+distribution as a whole is NOT licensed under a commercial-use or copyleft
+open-source license. Each component remains governed by its own license terms
+in `licenses/` and `THIRD_PARTY_NOTICES.md`.
+
+
+1. Project Code (`src_v3/`, `weights/`, `sample_data/`)
+-------------------------------------------------------
+Copyright (c) 2026 GOGaussianFluid Authors. All rights reserved.
+
+Subject to the third-party terms referenced below (in particular Section 4.2 of
+the Gaussian-Splatting License), permission is granted, free of charge, to use,
+copy, modify, and distribute the project code in `src_v3/` (excluding
+`cunnsearch.cp310-win_amd64.pyd`), `weights/`, and `sample_data/` for
+NON-COMMERCIAL RESEARCH AND/OR EVALUATION PURPOSES ONLY, provided that the above
+copyright notice and this permission notice are retained in all copies.
+
+Commercial use, exploitation, or distribution is prohibited without prior
+written consent of the authors AND the respective third-party licensors
+(including Inria / MPII for `diff-gaussian-rasterization`).
+
+
+2. Mandatory NVIDIA Notice
+--------------------------
+This software contains source code provided by NVIDIA Corporation.
+
+
+3. Exclusion of Open-Source License Terms for Proprietary SDK Binaries
+----------------------------------------------------------------------
+For compliance with Section 4(d) of the NVIDIA Texture Tools SDK License and
+the Distribution Restrictions of the Microsoft DirectX License Terms:
+
+  - `Falcor/nvtt30106.dll` and `Falcor/cudart64_110.dll`
+  - `Falcor/D3D12/D3D12Core.dll` and `Falcor/D3D12/d3d12SDKLayers.dll`
+  - `Falcor/WinPixEventRuntime.dll`
+
+are redistributed in object code form ONLY as part of this application under
+their respective proprietary license terms in `licenses/`. Nothing in this
+repository subjects those binaries to any license that requires them to be
+disclosed in source code form, licensed for creating derivative works, or
+redistributed on standalone or open-source terms. You may not redistribute
+those SDK binaries as a stand-alone product.
+
+
+4. Third-Party Licenses
+-----------------------
+Full license texts and required notices for all bundled components are located
+in `THIRD_PARTY_NOTICES.md` and the `licenses/` directory:
+
+  - `diff_gaussian_rasterization/` and `Dependency/diff-gaussian-rasterization/`
+    -> Gaussian-Splatting License (Inria & MPII, non-commercial research only):
+       `licenses/diff-gaussian-rasterization-LICENSE.md`
+  - `src_v3/cunnsearch.cp310-win_amd64.pyd`
+    -> MIT License (cuNSearch contributors) + PyTorch BSD-3-Clause:
+       `licenses/cuNSearch-LICENSE.txt`
+  - `Falcor/` (modified Falcor runtime and custom render passes)
+    -> BSD 3-Clause License (NVIDIA Corporation):
+       `Falcor/LICENSE.md` and `licenses/Falcor-LICENSE.md`
+  - `Falcor/FreeImage.dll`, `Falcor/FreeImagePlus.dll`
+    -> Elected under the FreeImage Public License (FIPL) v1.0:
+       `licenses/FreeImage-FIPL-1.0.txt`
+  - `Falcor/openvdb.dll`
+    -> Mozilla Public License 2.0 (unmodified binary; upstream source link in
+       `licenses/OpenVDB-LICENSE.txt`)
+  - All other libraries bundled under `Falcor/` (Slang, Assimp, OpenEXR, Imath,
+    Blosc, oneTBB, Boost, HDF5, GLFW, Dear ImGui, pybind11, NVTT, DirectX 12
+    Agility SDK, WinPixEventRuntime)
+    -> See `THIRD_PARTY_NOTICES.md` and `licenses/`.
+
+
+5. Disclaimer of Warranty & Limitation of Liability
+---------------------------------------------------
+THIS SOFTWARE AND ALL INCLUDED THIRD-PARTY COMPONENTS ARE PROVIDED "AS IS",
+WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
+NON-INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS, COPYRIGHT HOLDERS, NVIDIA
+CORPORATION, MICROSOFT CORPORATION, INRIA, MPII, OR ANY OTHER LICENSOR BE
+LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF
+CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

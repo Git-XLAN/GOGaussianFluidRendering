@@ -1,0 +1,9 @@
+Copyright Contributors to the OpenVDB Project
+SPDX-License-Identifier: MPL-2.0
+
+The bundled Falcor/openvdb.dll is an unmodified build of OpenVDB 9.0.0
+(as packaged by vcpkg/packman). Under Section 3.2(a) of the Mozilla Public
+License 2.0, the corresponding source code for OpenVDB is available at:
+  https://github.com/AcademySoftwareFoundation/openvdb/releases/tag/v9.0.0
+and the full text of the Mozilla Public License 2.0 is available at:
+  https://mozilla.org/MPL/2.0/

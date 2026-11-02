@@ -1,0 +1,10 @@
+# 在已安装 PyTorch 2.3.0+cu121、Python 3.10 的环境中补充这些包。
+# 不要用本文件覆盖 conda 里的 torch。
+numpy==1.26.4
+scipy>=1.11
+vtk==9.3.1
+pyexr==0.4.0
+# 可选：实时 SPH 演示 src_v3.demo.Simulation / testbed.py
+# pysplishsplash==2.16.0
+# 可选：example_sph.py / example_wave.py
+# warp-lang

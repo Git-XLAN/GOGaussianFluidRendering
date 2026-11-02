@@ -1,0 +1,19 @@
+# 参考环境：本机可跑通的 conda 环境名为 falcor-pytorch
+# Python 3.10 + PyTorch 2.3.0 (CUDA 12.1)
+# 建议优先直接使用已有 falcor-pytorch；从零创建见 README。
+name: falcor-pytorch
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+      - torch==2.3.0+cu121
+      - torchvision==0.18.0+cu121
+      - numpy==1.26.4
+      - scipy
+      - vtk==9.3.1
+      - pyexr==0.4.0

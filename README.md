@@ -34,7 +34,7 @@ Data layout:
 
 Frame id is the first number in the file name. `sample_data` only has a couple of frames, it's just for checking the setup.
 
-Full scenes (Boat, DoubleDamBreak, DownWater, WaterFall; particle data only) are on the [data-v1 release](https://github.com/Git-XLAN/GOGaussianFluid-Public/releases/tag/data-v1). Each scene is split into several independent zips. Download all parts of a scene and extract them into the same `<data>` folder:
+Full scenes (Boat, DoubleDamBreak, DownWater, WaterFall; particle data only) are on the [data-v1 release](https://github.com/Git-XLAN/GOGaussianFluidRendering/releases/tag/data-v1). Each scene is split into several independent zips. Download all parts of a scene and extract them into the same `<data>` folder:
 
 ```
 Expand-Archive Boat_particle_part01.zip -DestinationPath <data>
